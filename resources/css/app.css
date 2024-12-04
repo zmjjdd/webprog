@@ -1,0 +1,29 @@
+@import "bootstrap/dist/css/bootstrap.css";
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.budget-box {
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.budget-box:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-5px);
+}
+
+.bg-black {
+    width: 100%;
+    margin: 0;
+    padding: 5rem 0;
+}
+
+.bg-black .container-fluid {
+    padding: 0 2rem;
+}
