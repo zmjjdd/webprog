@@ -14,7 +14,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="{{ url('/') }}">Preloved</a>
+            <a class="navbar-brand fw-bold text-uppercase" href="{{ url('/') }}">CHERISHED</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,11 +44,13 @@
     @yield('content')
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-3">
+    <footer class="bg-dark text-white fixed-bottom py-3">
         <div class="container text-center">
             <p class="mb-0">© 2024 Preloved. All rights reserved.</p>
         </div>
     </footer>
+
 </body>
+
 
 </html>

@@ -13,7 +13,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home'); // Landing P
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
 
 // Route untuk membuat produk baru
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::get('/product/create', [ProductController::class, 'create'])->name('products.create');
 
 // Route untuk menyimpan produk baru
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -49,7 +49,6 @@ Route::prefix('seller')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
 });
-
 
 // Autentikasi
 Route::prefix('auth')->group(function () {

@@ -2,44 +2,54 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Add New Product</h1>
-        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        <h2>Edit Product</h2>
+        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-                <label for="product_name" class="form-label">Product Name</label>
-                <input type="text" name="product_name" id="product_name" class="form-control" required>
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="product_name">Product Name</label>
+                <input type="text" name="product_name" class="form-control"
+                    value="{{ old('product_name', $product->product_name) }}" required>
             </div>
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" id="description" class="form-control" rows="3"></textarea>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control">{{ old('description', $product->description) }}</textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="price" id="price" class="form-control" required>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" name="price" class="form-control" value="{{ old('price', $product->price) }}"
+                    required>
             </div>
 
-            <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <select name="category_id" id="category_id" class="form-control" required>
+            <div class="form-group">
+                <label for="category_id">Category</label>
+                <select name="category_id" class="form-control" required>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        // Jika nama kolom di tabel categories adalah category_name
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->category_name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="stock" class="form-label">Stock</label>
-                <input type="number" name="stock" id="stock" class="form-control" required>
+
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" class="form-control" value="{{ old('stock', $product->stock) }}"
+                    required>
             </div>
 
-            <div class="mb-3">
-                <label for="image_url" class="form-label">Product Image</label>
-                <input type="file" name="image_url" id="image_url" class="form-control">
+            <div class="form-group">
+                <label for="image_url">Product Image</label>
+                <input type="file" name="image_url" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Product</button>
+            <button type="submit" class="btn btn-primary">Update Product</button>
         </form>
     </div>
 @endsection

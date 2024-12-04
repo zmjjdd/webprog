@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-6 text-center text-md-start">
-                        <h1 class="fw-bold">Jual-Beli Barang Preloved dan Thrift</h1>
+                        <h1 class="fw-bold">Jual-Beli Pakaian dan Barang Thrift di CHERISHED</h1>
                         <p class="lead">Dapatkan produk berkualitas dengan harga terjangkau.</p>
                         <div class="mt-4">
                             @auth
@@ -62,35 +62,6 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
-        </div>
-
-
-        <div class="mb-5">
-            <h2 class="fw-bold">Hot Items</h2>
-            <div class="row">
-                @foreach ($products as $product)
-                    @if ($product->is_hot_item)
-                        {{-- Pastikan ada field/flag untuk Hot Items --}}
-                        <div class="col-md-3 col-sm-6 mb-4">
-                            <div class="card h-100 border-0 shadow-sm">
-                                {{-- Cek jika image_url tidak ada, gunakan gambar kosong --}}
-                                <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}"
-                                    class="card-img-top" alt="{{ $product->product_name }}"
-                                    style="height: 250px; object-fit: cover;">
-                                <div class="card-body">
-                                    <h6 class="card-title fw-bold text-truncate">{{ $product->product_name }}</h6>
-                                    <p class="card-text mb-1 text-muted">Rp
-                                        {{ number_format($product->price, 0, ',', '.') }}</p>
-                                    <small class="text-muted d-block">{{ $product->brand ?? 'Unknown' }} -
-                                        {{ $product->size ?? 'Other' }}</small>
-                                    <a href="{{ route('product.show', $product->id) }}"
-                                        class="btn btn-dark btn-sm mt-2 w-100">Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 @endforeach
             </div>
         </div>

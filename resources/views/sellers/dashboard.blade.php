@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-4">
             <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add New Product</a>
+
         </div>
         <div class="col-md-8">
             <h3>Your Products</h3>

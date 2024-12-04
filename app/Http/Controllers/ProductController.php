@@ -112,18 +112,18 @@ class ProductController extends Controller
     }
 
 
-
-
-
     /**
      * Menampilkan form untuk mengedit produk.
      */
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $categories = Category::all(); // Pastikan ada kategori
+        $categories = Category::all(); // Ambil semua kategori
+
+        // Pastikan produk dan kategori dikirim ke view
         return view('sellers.edit_product', compact('product', 'categories'));
     }
+
 
 
     /**
@@ -169,6 +169,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Product deleted successfully!');
+        return redirect()->route('seller.dashboard')->with('success', 'Product deleted successfully!');
     }
 }
