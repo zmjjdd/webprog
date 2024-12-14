@@ -11,10 +11,7 @@ class CartController extends Controller
     // Menampilkan produk dalam keranjang
     public function index()
     {
-        $cart = Cart::with('products')->where('user_id', auth()->id())->first();
-        if (!$cart) {
-            $cart = Cart::create(['user_id' => auth()->id()]);
-        }
+        $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
 
         return view('carts.index', compact('cart'));
     }
@@ -23,11 +20,28 @@ class CartController extends Controller
     public function addToCart($productId)
     {
         $product = Product::findOrFail($productId);
-        $cart = Cart::firstOrCreate(['user_id' => auth()->id()]);
-        $cart->products()->attach($product->id, ['quantity' => 1]);
 
-        return redirect()->route('cart.index');
+        // Cek apakah produk sudah ada di keranjang user
+        $cart = Cart::where('user_id', auth()->id())
+            ->where('product_id', $product->id)
+            ->first();
+
+        if ($cart) {
+            // Jika sudah ada, tambahkan quantity
+            $cart->quantity += 1;
+            $cart->save();
+        } else {
+            // Jika belum ada, buat entri baru
+            Cart::create([
+                'user_id' => auth()->id(),
+                'product_id' => $product->id,
+                'quantity' => 1,
+            ]);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
+
 
     // Menghapus produk dari keranjang
     public function removeFromCart($productId)

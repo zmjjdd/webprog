@@ -44,7 +44,7 @@
     @yield('content')
 
     <!-- Footer -->
-    <footer class="bg-dark text-white fixed-bottom py-3">
+    <footer class="bg-dark text-white py-3">
         <div class="container text-center">
             <p class="mb-0">© 2024 Preloved. All rights reserved.</p>
         </div>

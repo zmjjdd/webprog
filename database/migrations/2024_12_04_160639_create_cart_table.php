@@ -11,24 +11,17 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('carts')) {
-            Schema::create('carts', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedBigInteger('user_id');
-                $table->timestamps();
-
-                // Foreign key
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            });
-        }
+        Schema::create('carts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->integer('quantity')->default(1);
+            $table->timestamps();
+        });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('cart');
+        Schema::dropIfExists('carts');
     }
 };
